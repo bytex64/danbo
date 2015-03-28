@@ -1,0 +1,24 @@
+danbo - layered sandbox tool
+
+danbo sets up an aufs chroot in an isolated PID and mount namespace.
+Changes are stored in an isolated directory on top of a base system, and
+new layers can be recursively created on top of current ones.  In this
+way, changes can be made experimentally and discarded, merged, or
+composed with other layers.
+
+You will need:
+
+- A kernel with aufs support (recent Debian/Ubuntu kernels seem to have
+  it automatically).
+- A kernel with CLONE_NEWNS and CLONE_NEWPID support (2.6.24 or later)
+
+By default, `make install` will install only danbo and a skeletal base
+filesystem structure in /var/lib/danbo.  To actually use danbo, you will
+also need something to run inside /var/lib/danbo/base.  Danbo includes
+configuration to build and install a static busybox binary with `make
+busybox-root` and `make install-busybox-root`.  Note that this will
+download busybox via `wget`.
+
+To start a danbo session, just run /var/lib/danbo/base/sbin/danbo, as
+root.  Danbo is suid root so that you can enter a layer as a normal
+user, but /var/lib/danbo is by default only accessible to root.
