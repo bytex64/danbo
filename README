@@ -11,6 +11,11 @@ You will need:
 - A kernel with aufs support (recent Debian/Ubuntu kernels seem to have
   it automatically).
 - A kernel with CLONE_NEWNS and CLONE_NEWPID support (2.6.24 or later)
+- If you want to use the --restricted option, kernel support for cgroups
+  and prctl(PR_CAPBSET_DROP, ...), with each individual cgroup
+  controllers mounted on /sys/fs/cgroup/<controller> (2.6.25 or later).
+  Cgroups are set up like this automatically by Ubuntu's cgroup-lite
+  package.
 
 By default, `make install` will install only danbo and a skeletal base
 filesystem structure in /var/lib/danbo.  To actually use danbo, you will

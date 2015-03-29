@@ -1,5 +1,5 @@
 targets = danbo
-CFLAGS = -D_GNU_SOURCE -g
+CFLAGS = -std=c99 -D_GNU_SOURCE -g
 
 include vars.mk
 
